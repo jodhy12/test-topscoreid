@@ -1,0 +1,23 @@
+.nav .nav-item .nav-link{
+    color: #111;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav .nav-item .nav-link:hover{
+    background-color: #eee;
+}
+
+.nav .nav-item .nav-link.active{
+    color: #007bff;
+}
+
+.nav .nav-item .nav-link.active:hover{
+    color: #111;
+    background-color: #eee;
+}
+
+body{
+    background: #eed !important;
+}
+
