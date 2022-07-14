@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.karyawan');
-});
+Route::get('/', [KaryawanController::class, 'index'])->name('karyawan');
 
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 Route::get('/kehadiran', [KaryawanController::class, 'kehadiran'])->name('kehadiran');

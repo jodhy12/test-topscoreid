@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width:100px">No</th>
-                                    <th class="text-center">Data Karyawan</th>
+                                    <th class="text-center">Nama Karyawan</th>
                                 </tr>
                             </thead>
                             <tbody>

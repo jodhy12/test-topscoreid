@@ -18,10 +18,11 @@ class KaryawanController extends Controller
 
     public function kehadiran(Request $request)
     {
+        $filter = $request->query('total') ? $request->query('total') : 0;
         $dataPerPage = 5;
-        $absens = $this->dataUsers(intVal($request->query('total')));
+        $absens = $this->dataUsers(intVal($filter));
         $absens = $this->paginator($absens, $dataPerPage, $request->page);
-        return view('admin.kehadiran.kehadiran', compact('absens'));
+        return view('admin.kehadiran.kehadiran', compact('absens', 'filter'));
     }
 
     public function addKehadiran()

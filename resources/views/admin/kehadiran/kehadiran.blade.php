@@ -29,16 +29,15 @@
                         <div class="form-group">
                             <label>Filter by</label>
                             <select name="total" class="form-control" style="width: 30%" @change=handleChange>
-                                <option value="" selected>Select Filter</option>
-                                <option value="0">Tampilkan semua</option>
-                                <option value="4">Total absen lebih dari 3</option>
+                                <option value="0" :selected="filter == 0">Tampilkan semua</option>
+                                <option value="4" :selected="filter == 4">Total absen lebih dari 3</option>
                             </select>
                         </div>
                         <table class="table table-bordered m-0">
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width:100px">No</th>
-                                    <th class="text-center">Data Karyawan</th>
+                                    <th class="text-center">Nama Karyawan</th>
                                     <th class="text-center">Total Absen</th>
                                 </tr>
                             </thead>
@@ -86,7 +85,7 @@
             data() {
                 return {
                     datas: {!! json_encode($absens) !!},
-                    filter: 0,
+                    filter: {!! json_encode($filter) !!},
                     url: '{{ route('kehadiran') }}',
                 }
             },
