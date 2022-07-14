@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div class="d-flex" id="wrapper">
+    <div class="d-flex justify-content-between" id="wrapper">
         <!-- Sidebar-->
         <nav class="col-md-2 border-end p-0" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light text-center font-weight-bold">Menu</div>

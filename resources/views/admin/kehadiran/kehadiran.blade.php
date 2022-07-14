@@ -27,7 +27,8 @@
                         </div>
                         <div class="row">
                             <div class="form-group mb-1">
-                                <p class="p-0 m-1">Data dari <span class="font-weight-bold">@{{ datas.from }}</span>
+                                <p class="p-0 m-1">Menampilkan data dari <span
+                                        class="font-weight-bold">@{{ datas.from }}</span>
                                     sampai
                                     <span class="font-weight-bold">@{{ datas.to }}</span>
                                 </p>
