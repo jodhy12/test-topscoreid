@@ -70,6 +70,7 @@ class KaryawanController extends Controller
 
         $absensRaw = $this->getAbsen();
         $usersRaw = $this->getUsers();
+        $users = [];
         foreach ($usersRaw as $user) {
             $data = [];
             foreach ($absensRaw as $absen) {
@@ -78,10 +79,6 @@ class KaryawanController extends Controller
                 }
             }
             $user->absens = $data;
-        }
-
-        $users = [];
-        foreach ($usersRaw as $user) {
             if ($user->absens) {
                 array_push($users, $user);
             }

@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3>Data Kehadiran</h3>
+                                <h3>Data Absen</h3>
                                 <div>
                                     <a href="{{ route('addKehadiran') }}" class="btn btn-primary btn-sm">Tambah Data</a>
                                 </div>
@@ -21,8 +21,8 @@
                         <div class="form-group">
                             <label>Filter by</label>
                             <select name="total" class="form-control" style="width: 30%" @change=handleChange>
-                                <option value="0" :selected="filter == 0">Tampilkan semua</option>
-                                <option value="4" :selected="filter == 4">Total absen lebih dari 3</option>
+                                <option value="0" :selected="filter >= 0 && filter < 4">Tampilkan semua</option>
+                                <option value="4" :selected="filter > 3">Total absen lebih dari 3</option>
                             </select>
                         </div>
                         <div class="row">

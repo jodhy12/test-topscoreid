@@ -36,7 +36,8 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('kehadiran') }}"
-                            class="nav-link text-center {{ request()->is('kehadiran') ? 'active' : '' }}">Kehadiran</a>
+                            class="nav-link text-center {{ request()->is('kehadiran') ? 'active' : '' }}">Data
+                            Absen</a>
                     </li>
                 </ul>
             </div>
