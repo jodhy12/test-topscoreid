@@ -8,9 +8,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="d-flex align-item-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between">
                                 <h3>Data Kehadiran</h3>
-                                <a href="{{ route('addKehadiran') }}" class="btn btn-primary">Tambah Data</a>
+                                <div>
+                                    <a href="{{ route('addKehadiran') }}" class="btn btn-primary btn-sm">Tambah Data</a>
+                                </div>
                             </div>
                         </div>
 
