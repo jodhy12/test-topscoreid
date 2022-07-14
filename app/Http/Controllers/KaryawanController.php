@@ -82,10 +82,9 @@ class KaryawanController extends Controller
             if ($user->absens) {
                 array_push($users, $user);
             }
-        }
-
-        foreach ($users as $user) {
-            $user->count = count($user->absens);
+            foreach ($users as $user) {
+                $user->count = count($user->absens);
+            }
         }
         if ($params > 3) {
             $userCount = [];
