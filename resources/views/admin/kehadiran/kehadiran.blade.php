@@ -18,6 +18,13 @@
 
                     </div>
                     <div class="card-body">
+                        <div class="form-group">
+                            <label>Filter by</label>
+                            <select name="total" class="form-control" style="width: 30%" @change=handleChange>
+                                <option value="0" :selected="filter == 0">Tampilkan semua</option>
+                                <option value="4" :selected="filter == 4">Total absen lebih dari 3</option>
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="form-group mb-1">
                                 <p class="p-0 m-1">Data dari <span class="font-weight-bold">@{{ datas.from }}</span>
@@ -25,13 +32,6 @@
                                     <span class="font-weight-bold">@{{ datas.to }}</span>
                                 </p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Filter by</label>
-                            <select name="total" class="form-control" style="width: 30%" @change=handleChange>
-                                <option value="0" :selected="filter == 0">Tampilkan semua</option>
-                                <option value="4" :selected="filter == 4">Total absen lebih dari 3</option>
-                            </select>
                         </div>
                         <table class="table table-bordered m-0">
                             <thead>
