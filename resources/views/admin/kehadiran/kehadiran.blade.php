@@ -88,9 +88,7 @@
                     url: '{{ route('kehadiran') }}',
                 }
             },
-            mounted() {
-                console.log(this.datas)
-            },
+            mounted() {},
             methods: {
                 handleChange() {
                     this.filter = $('select[name=total]').val()
