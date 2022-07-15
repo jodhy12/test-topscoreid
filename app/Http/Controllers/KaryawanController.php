@@ -18,12 +18,15 @@ class KaryawanController extends Controller
 
     public function kehadiran(Request $request)
     {
-        $filter = $request->query('total') ? $request->query('total') : 0;
-        $dataPerPage = $request->query('perPage') ? $request->query('perPage') : 5;
+        $filter = $request->query('total');
+        $dataPerPage = $request->query('perPage');
         if ($dataPerPage != 5 && $dataPerPage != 10 && $dataPerPage != 15) {
             $dataPerPage = 5;
         }
-        $absens = $this->dataUsers(intVal($filter));
+        if ($filter !== 'all' && $filter !== 'absen') {
+            $filter = 'all';
+        }
+        $absens = $this->dataUsers($filter);
         $absens = $this->paginator($absens, $dataPerPage, $request->page);
         return view('admin.kehadiran.kehadiran', compact('absens', 'filter', 'dataPerPage'));
     }
@@ -88,7 +91,7 @@ class KaryawanController extends Controller
             }
         }
 
-        if ($params > 3) {
+        if ($params === 'absen') {
             $userCount = [];
             foreach ($users as $user) {
                 if ($user->count > 3) {

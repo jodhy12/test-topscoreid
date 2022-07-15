@@ -21,8 +21,8 @@
                         <div class="form-group">
                             <label>Filter by</label>
                             <select name="total" class="form-control" style="width: 30%" @change=handleChange>
-                                <option value="0" :selected="filter >= 0 && filter < 4">Tampilkan semua</option>
-                                <option value="4" :selected="filter > 3">Total absen lebih dari 3</option>
+                                <option value="all" :selected="filter === 'all'">Tampilkan semua</option>
+                                <option value="absen" :selected="filter === 'absen'">Total absen lebih dari 3</option>
                             </select>
                             <p class="p-0 m-1">Tampilkan
                                 <select name="perPage" @change=handleChange>
@@ -62,23 +62,21 @@
                     <div class="card-footer clearfix">
                         <ul class="pagination pagination-sm m-0 float-right">
                             <li class="page-item"><a class="page-link"
-                                    :href="datas.prev_page_url ? datas.prev_page_url.substring(1) + '&perPage=' + perPage :
+                                    :href="datas.prev_page_url ? query() + datas.prev_page_url.substring(2) :
                                         datas.prev_page_url">&laquo;</a>
                             </li>
                             <li v-if="datas.current_page !== 1 && datas.last_page > 1" class="page-item"><a
-                                    class="page-link"
-                                    :href="datas.first_page_url.substring(1) + '&perPage=' + perPage">First</a>
+                                    class="page-link" :href="query() + datas.first_page_url.substring(2)">First</a>
                             </li>
                             <li class="page-item" :class="{ active: datas.current_page == index }"
                                 v-for="index in datas.last_page"><a class="page-link"
-                                    :href="'?page=' + index + '&perPage=' + perPage">@{{ index }}</a>
+                                    :href="query() + 'page=' + index">@{{ index }}</a>
                             </li>
                             <li v-if="datas.last_page !== datas.current_page && datas.last_page > 1" class="page-item"><a
-                                    class="page-link"
-                                    :href="datas.last_page_url.substring(1) + '&perPage=' + perPage">Last</a>
+                                    class="page-link" :href="query() + datas.last_page_url.substring(2)">Last</a>
                             </li>
                             <li class="page-item"><a class="page-link"
-                                    :href="datas.next_page_url ? datas.next_page_url.substring(1) + '&perPage=' + perPage :
+                                    :href="datas.next_page_url ? query() + datas.next_page_url.substring(2) :
                                         datas.next_page_url">&raquo;</a>
                             </li>
                         </ul>
@@ -105,11 +103,14 @@
             },
             mounted() {},
             methods: {
+                query() {
+                    return '?total=' + this.filter + '&perPage=' + this.perPage + '&'
+                },
                 handleChange() {
                     this.filter = $('select[name=total]').val()
                     this.perPage = $('select[name=perPage]').val()
 
-                    window.location.href = this.url + '?total=' + this.filter + '&perPage=' + this.perPage
+                    return window.location.href = this.url + '?total=' + this.filter + '&perPage=' + this.perPage
                 }
             }
         }).mount('#ctrl')
