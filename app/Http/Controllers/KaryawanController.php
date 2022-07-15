@@ -23,10 +23,10 @@ class KaryawanController extends Controller
     {
         // Get endpoint query
         $filter = $request->query('total');
-        $dataPerPage = $request->query('perPage');
+        $dataPerPage = intVal($request->query('perPage'));
 
         // Validate
-        $dataPerPage = $dataPerPage != 5 && $dataPerPage != 10 && $dataPerPage != 15 ? 5 : $dataPerPage;
+        $dataPerPage = $dataPerPage !== 5 && $dataPerPage !== 15 && $dataPerPage !== 25 ? 5 : $dataPerPage;
         $filter = $filter !== 'absen' ? 'all' : 'absen';
 
         // Process Data
