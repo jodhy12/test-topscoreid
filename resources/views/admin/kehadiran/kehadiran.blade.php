@@ -24,6 +24,14 @@
                                 <option value="0" :selected="filter >= 0 && filter < 4">Tampilkan semua</option>
                                 <option value="4" :selected="filter > 3">Total absen lebih dari 3</option>
                             </select>
+                            <p class="p-0 m-1">Tampilkan
+                                <select name="perPage" @change=handleChange>
+                                    <option value="5" :selected="perPage == 5">5</option>
+                                    <option value="15" :selected="perPage == 15">15</option>
+                                    <option value="25" :selected="perPage == 25">25</option>
+                                </select>
+                                data per halaman
+                            </p>
                         </div>
                         <div class="row">
                             <div class="form-group mb-1">
@@ -54,20 +62,24 @@
                     <div class="card-footer clearfix">
                         <ul class="pagination pagination-sm m-0 float-right">
                             <li class="page-item"><a class="page-link"
-                                    :href="datas.prev_page_url ? datas.prev_page_url.substring(1) : datas.prev_page_url">&laquo;</a>
+                                    :href="datas.prev_page_url ? datas.prev_page_url.substring(1) + '&perPage=' + perPage :
+                                        datas.prev_page_url">&laquo;</a>
                             </li>
                             <li v-if="datas.current_page !== 1 && datas.last_page > 1" class="page-item"><a
-                                    class="page-link" :href="datas.first_page_url.substring(1)">First</a>
+                                    class="page-link"
+                                    :href="datas.first_page_url.substring(1) + '&perPage=' + perPage">First</a>
                             </li>
                             <li class="page-item" :class="{ active: datas.current_page == index }"
                                 v-for="index in datas.last_page"><a class="page-link"
-                                    :href="'?page=' + index">@{{ index }}</a>
+                                    :href="'?page=' + index + '&perPage=' + perPage">@{{ index }}</a>
                             </li>
                             <li v-if="datas.last_page !== datas.current_page && datas.last_page > 1" class="page-item"><a
-                                    class="page-link" :href="datas.last_page_url.substring(1)">Last</a>
+                                    class="page-link"
+                                    :href="datas.last_page_url.substring(1) + '&perPage=' + perPage">Last</a>
                             </li>
                             <li class="page-item"><a class="page-link"
-                                    :href="datas.next_page_url ? datas.next_page_url.substring(1) : datas.next_page_url">&raquo;</a>
+                                    :href="datas.next_page_url ? datas.next_page_url.substring(1) + '&perPage=' + perPage :
+                                        datas.next_page_url">&raquo;</a>
                             </li>
                         </ul>
                     </div>
@@ -87,6 +99,7 @@
                 return {
                     datas: {!! json_encode($absens) !!},
                     filter: {!! json_encode($filter) !!},
+                    perPage: {!! json_encode($dataPerPage) !!},
                     url: '{{ route('kehadiran') }}',
                 }
             },
@@ -94,7 +107,9 @@
             methods: {
                 handleChange() {
                     this.filter = $('select[name=total]').val()
-                    window.location.href = this.url + '?total=' + this.filter
+                    this.perPage = $('select[name=perPage]').val()
+
+                    window.location.href = this.url + '?total=' + this.filter + '&perPage=' + this.perPage
                 }
             }
         }).mount('#ctrl')
